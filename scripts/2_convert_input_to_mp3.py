@@ -25,7 +25,7 @@ def batch_convert():
     print("Starting batch conversion (mp4 to mp3)")
     for filename in filenames:
         #filename_without_suffix = filename.replace('.mp4', '')
-        new_filename = filename.replace('.mp4', '').replace('.mkv', '').replace('.mov', '').replace('.mp3', '').replace('.wav', '')
+        new_filename = filename.replace('.mp4', '').replace('.mkv', '').replace('.mov', '').replace('.mp3', '').replace('.wav', '').replace('.aac','')
         path_to_split_audio = Path().cwd().parent.joinpath('data/split_audio')
         convert_video_to_audio(f"{path}/{filename}", f"{path_to_split_audio}/{new_filename}")
         print(f"Finished {filename}")

@@ -17,13 +17,16 @@ Step 4: Comparing Radio Segments to Fact Checked Statements
 
 Make a copy of this GitHub repository by running the following command on the command line:
 
+```
 $ git clone https://github.com/jrynning1/misinforadio.git
+```
 
 Navigate into the directory and run the following commands to initialize a python virtual environment:
 
+```
 $ pipenv install
 $ pipenv shell
-
+```
 
 Save a dataset of fact checked statements in the /data/factchecked_statements folder. Two datasets are currently supported.
 

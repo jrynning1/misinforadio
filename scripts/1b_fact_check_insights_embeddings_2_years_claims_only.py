@@ -1,3 +1,6 @@
+# This script generates embeddings for claim reviews 
+# within the past two years in the Fact-Check Insights JSON dataset
+
 import pandas as pd
 import os
 from openai import OpenAI

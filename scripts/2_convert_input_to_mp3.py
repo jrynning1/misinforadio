@@ -1,3 +1,5 @@
+# This script converts MP4, MKV, MOV, MP3, or WAV files to batches of 10-minute MP3 files
+
 import subprocess
 import os
 from pathlib import Path

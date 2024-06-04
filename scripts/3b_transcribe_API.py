@@ -1,8 +1,11 @@
+# This script uses the Whisper API to transcribe audio segments
+
 import pandas as pd
 import os
 from openai import OpenAI
 from pathlib import Path
 
+# add your OpenAI API key
 client = OpenAI(api_key='sk-proj-HSrHGyOHtEDtr9loLzRjT3BlbkFJTUFaqCLYDEs3B7qpBz7z')
 
 all_transcripts = []
@@ -11,6 +14,7 @@ split_audio_path = Path().cwd().parent.joinpath('data/split_audio/')
 
 print("Cleaning filenames")
 
+# defining function for Whisper requests; for additional options see Whisper documentation
 def clean_filenames():
     filenames = sorted((f for f in os.listdir(split_audio_path) if not f.startswith(".")), key=str.lower)
     for filename in filenames:
@@ -27,8 +31,10 @@ def transcribe(audio_import):
   )
     return transcription
 
+# finding all files in data/split_audio/ folder
 split_audio_filenames = os.listdir(split_audio_path)
 
+# formatting data returned from Whisper and appending to all_transcripts DataFrame
 def batch_transcribe():
     completed = 0
     for file in sorted(split_audio_filenames):

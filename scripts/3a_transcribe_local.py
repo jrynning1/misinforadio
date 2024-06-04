@@ -1,8 +1,9 @@
+# This script uses a local installation of Whisper to transcribe audio segments
+
 import pandas as pd
 import os
 import whisper
 from pathlib import Path
-
 
 all_transcripts = []
 
@@ -17,13 +18,16 @@ def clean_filenames():
 
 clean_filenames()
 
+# defining function for Whisper requests; for additional options see Whisper documentation
 def transcribe(audio_import):
     model = whisper.load_model("base")
     result = model.transcribe(f"{audio_import}")
     return result["text"]
 
+# finding all files in data/split_audio/ folder
 split_audio_filenames = sorted((f for f in os.listdir(split_audio_path) if not f.startswith(".")), key=str.lower)
 
+# formatting data returned from Whisper and appending to all_transcripts DataFrame
 def batch_transcribe():
     completed = 0
     for file in sorted(split_audio_filenames):

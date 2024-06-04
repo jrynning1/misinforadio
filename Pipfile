@@ -1,0 +1,41 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+openai = "*"
+pydub = "*"
+nltk = "*"
+numpy = "*"
+matplotlib = "*"
+libretranslate = "*"
+libretranslatepy = "*"
+python-ffmpeg = "*"
+certifi = "*"
+requests = "*"
+ffmpeg = "*"
+ffmpeg-python = "*"
+jq = "*"
+langchain-core = "*"
+langchain = "*"
+datetime = "*"
+langchain-openai = "*"
+tiktoken = "*"
+transformers = "*"
+plotly = "*"
+scikit-learn = "*"
+torch = "*"
+torchvision = "*"
+scipy = "*"
+utils = "*"
+polars = "*"
+wheel = "*"
+openai-whisper = "*"
+
+[dev-packages]
+ipykernel = "*"
+
+[requires]
+python_version = "3.11"

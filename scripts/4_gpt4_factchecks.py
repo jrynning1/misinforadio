@@ -1,3 +1,8 @@
+# This script compares embedded radio transcripts and fact-checks,
+# returning a CSV file of potential misinformation
+
+# ensure libretranslate is running on port 5000 before running this script
+
 import pandas as pd
 import os
 import numpy as np
@@ -6,10 +11,9 @@ from ast import literal_eval
 from openai import OpenAI
 from libretranslatepy import LibreTranslateAPI
 
-# ensure libretranslate is running on port 5000
-
 number_return_values = 1
 
+# add your OpenAI API key
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-proj-HSrHGyOHtEDtr9loLzRjT3BlbkFJTUFaqCLYDEs3B7qpBz7z"))
 
 transcript_json= Path().cwd().parent.joinpath('data/output_json/transcript.json')

@@ -94,6 +94,21 @@ top_matches_df = pd.DataFrame(top_matches_json)
 top_matches_df['similarity_value'] = top_matches_df['similarity'].apply(lambda x: x.split()[1]).astype(float)
 top_matches_df['factcheck_index'] = top_matches_df['similarity'].apply(lambda x: x.split()[0])
 
+over_50 = top_matches_df.loc[top_matches_df['similarity_value'] >= .5]
+
+over_50 = over_50.sort_values('similarity_value', ascending=False)
+
+over_50 = over_50[['filename', 'input_statement', 'checked_false_statement', 'similarity_value', 'factcheck_index']]
+
+over_50_csv_filepath = Path().cwd().parent.joinpath('data/output_csv/potential_misinformation.csv')
+
+print("Generating csv file...")
+
+over_50.to_csv(f"{over_50_csv_filepath}")
+
+
+print("Adding translation...")
+
 lt = LibreTranslateAPI("http://localhost:5000")
 
 def libretranslate_spanish(input_text):
@@ -102,19 +117,18 @@ def libretranslate_spanish(input_text):
 def libretranslate_french(input_text):
     return lt.translate(f"{input_text}", "fr", "en")
 
-print("Adding translation...")
+try:
+    over_50['translation'] = over_50['input_statement'].apply(lambda x: libretranslate_french(x))
+    over_50['translation'] = over_50['translation'].apply(lambda x: libretranslate_spanish(x))
 
-over_50 = top_matches_df.loc[top_matches_df['similarity_value'] >= .5]
+    over_50 = over_50.sort_values('similarity_value', ascending=False)
 
-over_50['translation'] = over_50['input_statement'].apply(lambda x: libretranslate_french(x))
-over_50['translation'] = over_50['translation'].apply(lambda x: libretranslate_spanish(x))
+    over_50 = over_50[['filename', 'input_statement', 'translation', 'checked_false_statement', 'similarity_value', 'factcheck_index']]
 
-over_50 = over_50.sort_values('similarity_value', ascending=False)
-
-over_50 = over_50[['filename', 'input_statement', 'translation', 'checked_false_statement', 'similarity_value', 'factcheck_index']]
-
-over_50_csv_filepath = Path().cwd().parent.joinpath('data/output_csv/potential_misinformation.csv')
+    translation_filepath = Path().cwd().parent.joinpath('data/output_csv/potential_misinformation_with_translations.csv')
+except:
+    print("Failed to add transcription. Check that LibreTranslate is running.")
 
 print("Generating csv file...")
 
-over_50.to_csv(f"{over_50_csv_filepath}")
+over_50.to_csv(f"{translation_filepath}")

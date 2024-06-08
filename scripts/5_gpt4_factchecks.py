@@ -125,10 +125,11 @@ try:
 
     over_50 = over_50[['filename', 'input_statement', 'translation', 'checked_false_statement', 'similarity_value', 'factcheck_index']]
 
-    translation_filepath = Path().cwd().parent.joinpath('data/output_csv/potential_misinformation_with_translations.csv')
 except:
     print("Failed to add transcription. Check that LibreTranslate is running.")
 
 print("Generating csv file...")
+
+translation_filepath = Path().cwd().parent.joinpath('data/output_csv/potential_misinformation_with_translations.csv')
 
 over_50.to_csv(f"{translation_filepath}")

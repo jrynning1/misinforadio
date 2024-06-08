@@ -1,5 +1,9 @@
 from libretranslatepy import LibreTranslateAPI
 import pandas as pd
+from pathlib import Path
+
+print("Enter LibreTranslate language code -- \"es\" for spanish, \"fr\" for french, etc.")
+input_language = input()
 
 print("Loading potential misinformation file...")
 
@@ -17,18 +21,30 @@ def libretranslate_spanish(input_text):
 def libretranslate_french(input_text):
     return lt.translate(f"{input_text}", "fr", "en")
 
-try:
-    over_50['translation'] = over_50['input_statement'].apply(lambda x: libretranslate_french(x))
-    over_50['translation'] = over_50['translation'].apply(lambda x: libretranslate_spanish(x))
+def libretranslate_input(input_text, input_language="es"):
+    return lt.translate(f"{input_text}", input_language, "en")
 
-    over_50 = over_50.sort_values('similarity_value', ascending=False)
+errors = 0
+translation_list = []
+input_language = input()
 
-    over_50 = over_50[['filename', 'input_statement', 'translation', 'checked_false_statement', 'similarity_value', 'factcheck_index']]
+for statement in over_50['input_statement']:
+    try:
+        translate_selected = libretranslate_input(statement, input_language)
+        #french = libretranslate_french(statement)
+        #spanish = libretranslate_spanish(french)
+        translation_list.append(translate_selected)
+    except:
+        translation_list.append("translation failed")
+        errors += 1
+print(f"Finished translating with {errors} errors.")
+over_50['translation'] = translation_list
+
+if errors > (len(over_50['input_statement'])/2):
+    print("Over 50 percent of translations failed. Double check your input language.")
+else:
+    print("Generating csv file...")
 
     translation_filepath = Path().cwd().parent.joinpath('data/output_csv/potential_misinformation_with_translations.csv')
-except:
-    print("Failed to add transcription. Check that LibreTranslate is running.")
-
-print("Generating csv file...")
-
-over_50.to_csv(f"{translation_filepath}")
+    
+    over_50.to_csv(f"{translation_filepath}")

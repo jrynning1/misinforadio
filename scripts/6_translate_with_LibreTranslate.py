@@ -26,7 +26,7 @@ def libretranslate_input(input_text, input_language="es"):
 
 errors = 0
 translation_list = []
-input_language = input()
+counter = 0
 
 for statement in over_50['input_statement']:
     try:
@@ -34,9 +34,14 @@ for statement in over_50['input_statement']:
         #french = libretranslate_french(statement)
         #spanish = libretranslate_spanish(french)
         translation_list.append(translate_selected)
+        counter += 1
+        print_text = f"Finished translating {counter} of {len(over_50['input_statement'])} statements -- {int((counter)/len(over_50['input_statement'])*100)}% complete         "
+        print("\r", print_text, end="")
     except:
         translation_list.append("translation failed")
         errors += 1
+        counter += 1
+        print(f"Error translating statement {counter}")
 print(f"Finished translating with {errors} errors.")
 over_50['translation'] = translation_list
 

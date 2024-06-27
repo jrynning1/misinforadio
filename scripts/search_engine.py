@@ -95,11 +95,13 @@ while True:
             link = f"=HYPERLINK(\"{url}\")"
             link_list.append(link)
         return link_list
-    
+            
     top_matches_df['url'] = hyperlinks_list(top_matches_df['url'])
 
-    transcription_entry = results[0].replace(' ', '_').replace('.', '').replace('?','').replace('!','')
     """
+    
+    transcription_entry = results[0].replace(' ', '_').replace('.', '').replace('?','').replace('!','')
+    
 
 
 

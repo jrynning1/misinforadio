@@ -7,6 +7,8 @@ from pathlib import Path
 from openai import OpenAI
 from libretranslatepy import LibreTranslateAPI
 
+pd.options.mode.chained_assignment = None  # default='warn'
+
 number_return_values = 1
 
 print("Importing false statements with embeddings...")
@@ -33,7 +35,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-proj-HSrHGyOHtEDtr9
 
 while True:
 
-    print('Input questionable statement inside quotation marks ("").')
+    print('Input questionable statement and press enter.')
 
     def get_embedding(text, model="text-embedding-3-small"):
         text = text.replace("\n", " ")
@@ -48,8 +50,6 @@ while True:
             transcription_embedding_array = np.array(embedding)
         except:
             transcription_embedding_array = 0
-
-    print(f'transcription embedding array: {transcription_embedding_array}')
 
     def cosine_similarity(vec1, vec2):
         # Normalize each vector to unit length
@@ -75,25 +75,46 @@ while True:
                 
         # print(f"Searched false statements with {errors} errors.")
         false_text_df['similarities'] = transcription_similarity_list
-        results = (
+        data = (
             false_text_df.sort_values("similarities", ascending=False)
         )
+        results = (transcription, data)
         return results
 
-    top_matches_df = search_false_statements()
+    results = search_false_statements()
+
+    top_matches_df = results[1]
+    
+    top_matches_df = top_matches_df[['statement', 'rating', 'url', 'time_since_publication', 'datePublished', 'similarities']]
+    
+
+    """
+    def hyperlinks_list(x):
+        link_list = []
+        for url in x:
+            link = f"=HYPERLINK(\"{url}\")"
+            link_list.append(link)
+        return link_list
+    
+    top_matches_df['url'] = hyperlinks_list(top_matches_df['url'])
+
+    transcription_entry = results[0].replace(' ', '_').replace('.', '').replace('?','').replace('!','')
+    """
+
+
 
     """
     top_matches_df['similarity_value'] = top_matches_df['similarities'].apply(lambda x: x.split()[1]).astype(float)
     top_matches_df['factcheck_index'] = top_matches_df['similarities'].apply(lambda x: x.split()[0])
     """
-    print(top_matches_df)
 
     over_50 = top_matches_df.loc[top_matches_df['similarities'] >= .5]
 
     over_50 = over_50.sort_values('similarities', ascending=False)
 
-    over_50_csv_filepath = Path().cwd().parent.joinpath('data/output_csv/search_results.csv')
-
-    print("Generating csv file...")
+    over_50_csv_filepath = Path().cwd().parent.joinpath(f"data/output_csv/{transcription_entry}.csv")
 
     over_50.to_csv(f"{over_50_csv_filepath}")
+
+    # open new csv file with bash
+    subprocess.run(["open", over_50_csv_filepath])

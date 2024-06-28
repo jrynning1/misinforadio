@@ -99,7 +99,7 @@ while True:
     top_matches_df['url'] = hyperlinks_list(top_matches_df['url'])
 
     """
-    
+
     transcription_entry = results[0].replace(' ', '_').replace('.', '').replace('?','').replace('!','')
     
 
@@ -110,13 +110,13 @@ while True:
     top_matches_df['factcheck_index'] = top_matches_df['similarities'].apply(lambda x: x.split()[0])
     """
 
-    over_50 = top_matches_df.loc[top_matches_df['similarities'] >= .5]
+    over_40 = top_matches_df.loc[top_matches_df['similarities'] >= .4]
 
-    over_50 = over_50.sort_values('similarities', ascending=False)
+    over_40 = over_40.sort_values('similarities', ascending=False)
 
     over_50_csv_filepath = Path().cwd().parent.joinpath(f"data/output_csv/{transcription_entry}.csv")
 
-    over_50.to_csv(f"{over_50_csv_filepath}")
+    over_40.to_csv(f"{over_50_csv_filepath}")
 
     # open new csv file with bash
     subprocess.run(["open", over_50_csv_filepath])

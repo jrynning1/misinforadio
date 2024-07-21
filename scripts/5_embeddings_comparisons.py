@@ -10,8 +10,8 @@ from pathlib import Path
 from openai import OpenAI
 from libretranslatepy import LibreTranslateAPI
 
-print("Enter LibreTranslate language code -- \"es\" for spanish, \"fr\" for french, etc.")
-input_language = input()
+# print("Enter LibreTranslate language code -- \"es\" for spanish, \"fr\" for french, etc.")
+# input_language = input()
 
 number_return_values = 1
 
@@ -36,6 +36,7 @@ for embedding in transcript_df['transcription_embedding']:
         transcription_embedding_list.append(0)
 transcript_df['transcription_embedding'] = transcription_embedding_list
 
+"""
 transcription_embedding_list = []
 for embedding in transcript_df['transcription_with_context_embedding']:
     try:
@@ -44,6 +45,7 @@ for embedding in transcript_df['transcription_with_context_embedding']:
     except:
         transcription_embedding_list.append(0)
 transcript_df['transcription_with_context_embedding'] = transcription_embedding_list
+"""
 
 def get_embedding(text, model="text-embedding-3-small"):
     text = text.replace("\n", " ")
@@ -81,11 +83,27 @@ def search_false_statements(search_terms,false_text_df=false_text_df, n=1):
     transcription_similarity_list = []
     transcription_embedding = search_terms.transcription_embedding
     transcription_embedding_array = np.array(transcription_embedding)
-    context_embedding = search_terms.transcription_with_context_embedding
-    context_embedding_array = np.array(context_embedding)
-    transcription = search_terms.transcription
+    # context_embedding = search_terms.transcription_with_context_embedding
+    # context_embedding_array = np.array(context_embedding)
+    # transcription = search_terms.transcription
     errors = 0
-# is receiving embeddings above
+    # is receiving embeddings above
+    for embedding in statement_embedding_list:
+        try:
+            transcription_similarity = cosine_similarity(embedding, transcription_embedding_array)
+            transcription_similarity_list.append(transcription_similarity)
+        except:
+            errors += 1
+            transcription_similarity_list.append("failed to generate similarity")
+        # print(f"Searched false statements with {errors} errors.")
+    false_text_df['similarities'] = transcription_similarity_list
+    results = (
+        false_text_df.sort_values("similarities", ascending=False).head(n)
+    )
+    return results
+
+"""
+# eventually work in a length separator to keep all statements over a certain threshold
     if len(transcription) > 150:
         for embedding in statement_embedding_list:
             try:
@@ -108,6 +126,7 @@ def search_false_statements(search_terms,false_text_df=false_text_df, n=1):
         false_text_df.sort_values("similarities", ascending=False).head(n)
     )
     return results
+"""
 
 top_matches_json = []
 
@@ -159,8 +178,8 @@ print("Generating csv file...")
 
 over_50.to_csv(f"{over_50_csv_filepath}")
 
-print("Enter LibreTranslate language code -- \"es\" for spanish, \"fr\" for french, etc.")
-input_language = input()
+# print("Enter LibreTranslate language code -- \"es\" for spanish, \"fr\" for french, etc.")
+# input_language = input()
 
 print("Adding translation...")
 
@@ -180,10 +199,12 @@ translation_list = []
 
 for statement in over_50['input_statement']:
     #try:
-        translate_selected = libretranslate_input(statement, input_language=input_language)
+        #translate_selected = libretranslate_input(statement, input_language=input_language)
+        spanish = libretranslate_spanish(statement)
         #french = libretranslate_french(statement)
         #spanish = libretranslate_spanish(french)
-        translation_list.append(translate_selected)
+        #translation_list.append(translate_selected)
+        translation_list.append(spanish)
     #except:
     #    translation_list.append("translation failed")
     #    errors += 1

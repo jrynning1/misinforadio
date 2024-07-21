@@ -24,6 +24,7 @@ exploded_transcript_df = transcript_df.explode('transcription').reset_index(drop
 
 exploded_transcript_df = exploded_transcript_df[['file_name', 'transcription']]
 
+"""
 exploded_transcript_df["transcription_before"] = exploded_transcript_df['transcription'].shift(1, fill_value=' ')
 
 exploded_transcript_df['transcription_after'] = exploded_transcript_df['transcription'].shift(-1, fill_value=' ')
@@ -31,6 +32,7 @@ exploded_transcript_df['transcription_after'] = exploded_transcript_df['transcri
 exploded_transcript_df['transcription_with_context'] = exploded_transcript_df['transcription_before'] + " " + exploded_transcript_df['transcription'] + " " + exploded_transcript_df['transcription_after']
 
 exploded_transcript_df['transcription_with_context'] = exploded_transcript_df['transcription_with_context'].apply(lambda x: x.strip())
+"""
 
 def get_embedding(text, model="text-embedding-3-small"):
     text = text.replace("\n", " ")
@@ -51,6 +53,7 @@ for segment in exploded_transcript_df['transcription']:
 
 exploded_transcript_df['transcription_embedding'] = transcription_embeddings_list
 
+"""
 transcription_with_context_embeddings_list = []
 counter = 0
 for segment in exploded_transcript_df['transcription_with_context']:
@@ -65,6 +68,7 @@ for segment in exploded_transcript_df['transcription_with_context']:
     counter += 1
 
 exploded_transcript_df['transcription_with_context_embedding'] = transcription_with_context_embeddings_list
+"""
 
 embedded_transcripts_path = embedded_false_statements_path = Path().cwd().parent.joinpath('data/embedded_transcripts/embedded_transcripts.csv')
 

@@ -7,7 +7,7 @@ input_language = input()
 
 print("Loading potential misinformation file...")
 
-over_50_csv_filepath = Path().cwd().parent.joinpath('data/output_csv/potential_misinformation.csv')
+over_50_csv_filepath = Path().cwd().parent.joinpath('data/output_csv/potential_misinformation_with_context.csv')
 
 over_50 = pd.read_csv(over_50_csv_filepath)
 

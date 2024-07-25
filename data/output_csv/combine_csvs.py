@@ -12,7 +12,7 @@ df = pd.DataFrame()
 
 for file in output_csv_filenames:
     temp_df = pd.read_csv(file)
-    pd.concat(df, temp_df)
+    pd.concat(['df', 'temp_df'])
 
 df = df.sorted('similarity_value', ascending=False)
 

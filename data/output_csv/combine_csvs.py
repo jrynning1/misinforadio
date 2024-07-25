@@ -3,17 +3,23 @@
 import pandas as pd
 from pathlib import Path
 import os
+import glob
 
-output_csv_filenames = Path().cwd()
+output_csv_path = Path().cwd()
 
-output_csv_filenames = os.listdir(output_csv_filenames)
+output_csv_filenames = glob.glob(os.path.join(output_csv_path, '*.csv'))
 
-df = pd.DataFrame()
+df = pd.read_csv(output_csv_filenames[0])
 
-for file in output_csv_filenames:
-    temp_df = pd.read_csv(file)
-    pd.concat([df, temp_df])
+for filename in output_csv_filenames[1:]:
+    try:
+        temp_df = pd.read_csv(filename)
+        df = pd.concat([df, temp_df], ignore_index=True)
+    except:
+        print(f"Error reading CSV {filename}.")
 
-df = df.sorted('similarity_value', ascending=False)
+df = df[df['input_statement'].str.len() >= 25]
+
+df = df.sort_values('similarity_value', ascending=False)
 
 df.to_csv('combined_potential_misinformation.csv')

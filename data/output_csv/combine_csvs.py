@@ -22,4 +22,4 @@ df = df[df['input_statement'].str.len() >= 25]
 
 df = df.sort_values('similarity_value', ascending=False)
 
-df.to_csv('combined_potential_misinformation.csv')
+df.to_excel('combined_potential_misinformation.xlsx')

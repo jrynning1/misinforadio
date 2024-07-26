@@ -56,7 +56,7 @@ false_text_df = false_text_df[false_text_df['datePublished'].str.len() == 10]
 false_text_df = false_text_df[false_text_df['statement'] != '']
 
 # remove characters from statement value that may be problematic
-false_text_df['statement'] = false_text_df['statement'].str.replace('\n', '').replace("'","").replace('"','').replace('“','').replace(',','\,')
+false_text_df['statement'] = false_text_df['statement'].str.replace('\n', '').replace("'","").replace('"','').replace('“','').replace(',','')
 
 # generate todays date to calculate time since publication
 todays_date = date.today()

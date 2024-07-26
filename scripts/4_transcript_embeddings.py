@@ -8,9 +8,11 @@ import os
 import numpy as np
 from pathlib import Path
 from openai import OpenAI
+from dotenv import load_dotenv
 
 # add your OpenAI API key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-proj-HSrHGyOHtEDtr9loLzRjT3BlbkFJTUFaqCLYDEs3B7qpBz7z"))
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 transcript_json= Path().cwd().parent.joinpath('data/output_json/transcript.json')
 

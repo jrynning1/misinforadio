@@ -4,9 +4,11 @@ import pandas as pd
 import os
 from openai import OpenAI
 from pathlib import Path
+from dotenv import load_dotenv
 
 # add your OpenAI API key
-client = OpenAI(api_key='sk-proj-HSrHGyOHtEDtr9loLzRjT3BlbkFJTUFaqCLYDEs3B7qpBz7z')
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 all_transcripts = []
 

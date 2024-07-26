@@ -8,7 +8,9 @@
 *.json
 *.zip
 *.aac
-*notebooks/
+*notebooks/*
+.env
+Pipfile.lock
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

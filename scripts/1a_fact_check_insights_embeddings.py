@@ -7,11 +7,13 @@ from openai import OpenAI
 from pathlib import Path
 import json
 from datetime import datetime, date
+from dotenv import load_dotenv
 
 print("Starting to gather embeddings... this may take some time")
 
-# add your OpenAI API key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-proj-HSrHGyOHtEDtr9loLzRjT3BlbkFJTUFaqCLYDEs3B7qpBz7z"))
+# get OpenAI API key from .env
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # load Fact-Check Insights JSON, with media reviews and claim reviews
 fact_check_insights_filepath = Path().cwd().parent.joinpath('data/factchecked_statements/fact_check_insights.json')

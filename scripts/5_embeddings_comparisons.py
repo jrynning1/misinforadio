@@ -9,6 +9,7 @@ import numpy as np
 from pathlib import Path
 from openai import OpenAI
 from libretranslatepy import LibreTranslateAPI
+from dotenv import load_dotenv
 
 # print("Enter LibreTranslate language code -- \"es\" for spanish, \"fr\" for french, etc.")
 # input_language = input()
@@ -16,7 +17,8 @@ from libretranslatepy import LibreTranslateAPI
 number_return_values = 1
 
 # add your OpenAI API key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-proj-HSrHGyOHtEDtr9loLzRjT3BlbkFJTUFaqCLYDEs3B7qpBz7z"))
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 embedded_transcripts_path= Path().cwd().parent.joinpath('data/embedded_transcripts/embedded_transcripts.csv')
 

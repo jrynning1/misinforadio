@@ -6,11 +6,14 @@ import pandas as pd
 import os
 from openai import OpenAI
 from pathlib import Path
+from dotenv import load_dotenv
+
 
 print("Starting to gather embeddings... this may take some time")
 
 # add your OpenAI API key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-proj-HSrHGyOHtEDtr9loLzRjT3BlbkFJTUFaqCLYDEs3B7qpBz7z"))
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # load PolitiFact JSON into DataFrame
 politifact_filepath = Path().cwd().parent.joinpath('data/factchecked_statements/politifact_factcheck_data.json')

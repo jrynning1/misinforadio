@@ -6,6 +6,7 @@ import numpy as np
 from pathlib import Path
 from openai import OpenAI
 from libretranslatepy import LibreTranslateAPI
+from dotenv import load_dotenv
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
@@ -31,7 +32,8 @@ col = false_text_df.pop("statement")
 false_text_df.insert(0,col.name, col)
 
 # add your OpenAI API key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-proj-HSrHGyOHtEDtr9loLzRjT3BlbkFJTUFaqCLYDEs3B7qpBz7z"))
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 while True:
 

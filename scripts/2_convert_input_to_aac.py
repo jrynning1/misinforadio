@@ -18,7 +18,7 @@ def video_rename():
 video_rename()
 
 def convert_video_to_audio(video_file_path, audio_file_path):
-    command = f"ffmpeg -i {video_file_path} -f segment -segment_time 600 {audio_file_path}_%03d.mp3"
+    command = f"ffmpeg -i {video_file_path} -f segment -segment_time 600 {audio_file_path}_%03d.aac"
     subprocess.call(command, shell=True)
 
 def batch_convert():

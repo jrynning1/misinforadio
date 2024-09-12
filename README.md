@@ -37,7 +37,7 @@ Save a dataset of fact checked statements in the misinforadio/data/factchecked_s
 
 - PolitiFact fact checks, compiled by Rishabh Misra and available at https://www.kaggle.com/datasets/rmisra/politifact-fact-check-dataset
 
-Navigate to the data/video_import folder and save a copy of any audio or vido files you want to analyze.
+Navigate to the data/video_import folder and save a copy of any audio or vido files you want to analyze. Misinforadio currently supports MP4, MKV, MOV, MP3, AAV, or WAV files of any length.
 
 Run python script "0a_fact_check_insights_embeddings_filtered.py"
 

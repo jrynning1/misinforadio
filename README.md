@@ -2,7 +2,7 @@
 
 Welcome to the misinforadio project. This tool is being developed to assist researchers and reporters to analyze misinformation on radio and television broadcasts.
 
-There are currently five steps in the automated analysis pipeline, each with a dedicated python script (or multiple scripts to support additional options). The default process can be completed by running the python script "0a_fact_check_insights_embeddings_filtered.py" followed by the bash script "1_run_all.sh". Below is a simple description of what this process will do.
+There are currently five steps in the automated analysis pipeline, each with a dedicated python script (or multiple scripts to support additional options). The default process can be completed by adding your OpenAI API key, running the python script "0a_fact_check_insights_embeddings_filtered.py", and then the bash script "1_run_all.sh". Below is a simple description of what this process will do.
 
 Step 1: Generating Ebmeddings of Fact Checked Statements
 
@@ -29,6 +29,11 @@ Ensure all required dependencies are installed. I suggest navigating into the di
 $ cd misinforadio
 $ pipenv install
 $ pipenv shell
+```
+Make an .env file containing your OpenAI API key. This program requires an OpenAI account and a small amount of credit for using the text embedding model.
+
+```
+$ echo "OPENAI_API_KEY=<ENTER YOUR API KEY HERE>" > .env
 ```
 
 Save a dataset of fact checked statements in the misinforadio/data/factchecked_statements folder. Two datasets are currently supported.

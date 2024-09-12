@@ -2,7 +2,7 @@
 
 Welcome to the misinforadio project. This tool is being developed to assist researchers and reporters to analyze misinformation on radio and television broadcasts.
 
-There are currently five steps in the automated analysis pipeline, each with a dedicated python script (or multiple scripts to support additional options). The default process can be completed by running the bash script "0_run_all.sh". Below is a simple description of waht this process will do.
+There are currently five steps in the automated analysis pipeline, each with a dedicated python script (or multiple scripts to support additional options). The default process can be completed by running the python script "0a_fact_check_insights_embeddings_filtered.py" followed by the bash script "1_run_all.sh". Below is a simple description of waht this process will do.
 
 Step 1: Generating Ebmeddings of Fact Checked Statements
 
@@ -39,13 +39,16 @@ Save a dataset of fact checked statements in the misinforadio/data/factchecked_s
 
 Navigate to the data/video_import folder and save a copy of any audio or vido files you want to analyze.
 
-Run python script "0_run_all.sh"
+Run python script "0a_fact_check_insights_embeddings_filtered.py"
+
+Run bash script "1_run_all.sh"
 
 ```
 $ cd scripts
-$ source 0_run_all.sh
+$ python 0a_fact_check_insights_embeddings_filtered.py
+$ source 1_run_all.sh
 ```
 
 The final output file will be generated in data/output_csv.
 
-Additional options are available by running individual Python scripts to suit your needs or available resources. Further documentation to come.
+Additional options are available by running individual Python scripts to suit your needs or available resources.

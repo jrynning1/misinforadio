@@ -12,6 +12,7 @@
 .env
 Pipfile.lock
 *.crdownload
+*.ods
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

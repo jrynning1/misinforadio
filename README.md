@@ -2,7 +2,7 @@
 
 Welcome to the misinforadio project. This tool is being developed to assist researchers and reporters to analyze misinformation on radio and television broadcasts.
 
-There are currently five steps in the automated analysis pipeline, each with a dedicated python script (or multiple scripts to support additional options). The default process can be completed by running the python script "0a_fact_check_insights_embeddings_filtered.py" followed by the bash script "1_run_all.sh". Below is a simple description of waht this process will do.
+There are currently five steps in the automated analysis pipeline, each with a dedicated python script (or multiple scripts to support additional options). The default process can be completed by running the python script "0a_fact_check_insights_embeddings_filtered.py" followed by the bash script "1_run_all.sh". Below is a simple description of what this process will do.
 
 Step 1: Generating Ebmeddings of Fact Checked Statements
 

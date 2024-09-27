@@ -2,17 +2,19 @@
 
 Welcome to the misinforadio project. This tool is being developed to assist researchers and reporters to analyze misinformation on radio and television broadcasts.
 
+Please see the [introduction slides](https://new.express.adobe.com/publishedV2/urn:aaid:sc:US:1d203e58-92f2-4038-ad15-5d6f5fd62150?promoid=Y69SGM5H&mv=other) or basic instructions below.
+
 There are currently five steps in the automated analysis pipeline, each with a dedicated python script (or multiple scripts to support additional options). The default process can be completed by adding your OpenAI API key, running the python script "0a_fact_check_insights_embeddings_filtered.py", and then the bash script "1_run_all.sh". Below is a simple description of what this process will do.
 
-Step 1: Generating Ebmeddings of Fact Checked Statements
+Step 1: Generating embeddings of fact-checked statements
 
-Step 2: Converting Input Files to Shortened AAC Files
+Step 2: Converting input files to shortened AAC files
 
 Step 3: Transcription by OpenAI Whisper model
 
-Step 4: Generating Embeddings with OpenAI Embeddings API
+Step 4: Generating embeddings with OpenAI Text Embeddings API
 
-Step 5: Comparing Radio Segments to Fact Checked Statements and Translating Significant Matches with LibreTranslate
+Step 5: Comparing radio segments to fact-checked statements and translating significant matches with LibreTranslate
 
 
 # Basic Instructions
@@ -23,7 +25,7 @@ Make a copy of this GitHub repository by running the following command on the co
 $ git clone https://github.com/jrynning1/misinforadio.git
 ```
 
-Ensure all required dependencies are installed. I suggest navigating into the directory and run the following commands to initialize a python virtual environment and simplify this process:
+Ensure all required dependencies are installed. Navigate into the directory and run the following commands to initialize a python virtual environment and simplify this process:
 
 ```
 $ cd misinforadio

@@ -1,0 +1,10 @@
+[playlist]
+File1=http://18233.live.streamtheworld.com:80/KGREAM_SC
+File2=http://18233.live.streamtheworld.com:3690/KGREAM_SC
+File3=http://14923.live.streamtheworld.com:80/KGREAM_SC
+File4=http://14923.live.streamtheworld.com:3690/KGREAM_SC
+Title1=KGREAM_SC
+Title2=KGREAM_SC-Bak
+Length1=-1
+NumberOfEntries=4
+Version=2

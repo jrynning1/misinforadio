@@ -1,0 +1,12 @@
+[playlist]
+File1=http://25003.live.streamtheworld.com:80/KPVWFM_SC
+File2=http://25003.live.streamtheworld.com:3690/KPVWFM_SC
+File3=http://19273.live.streamtheworld.com:80/KPVWFM_SC
+File4=http://19273.live.streamtheworld.com:3690/KPVWFM_SC
+File5=http://17843.live.streamtheworld.com:80/KPVWFM_SC
+File6=http://17843.live.streamtheworld.com:3690/KPVWFM_SC
+Title1=KPVWFM_SC
+Title2=KPVWFM_SC-Bak
+Length1=-1
+NumberOfEntries=6
+Version=2

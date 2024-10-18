@@ -1,0 +1,16 @@
+[playlist]
+File1=http://27163.live.streamtheworld.com:80/KRYEFM_SC
+File2=http://27163.live.streamtheworld.com:3690/KRYEFM_SC
+File3=http://18323.live.streamtheworld.com:80/KRYEFM_SC
+File4=http://18323.live.streamtheworld.com:3690/KRYEFM_SC
+File5=http://27143.live.streamtheworld.com:80/KRYEFM_SC
+File6=http://27143.live.streamtheworld.com:3690/KRYEFM_SC
+File7=http://13693.live.streamtheworld.com:80/KRYEFM_SC
+File8=http://13693.live.streamtheworld.com:3690/KRYEFM_SC
+File9=http://22973.live.streamtheworld.com:80/KRYEFM_SC
+File10=http://22973.live.streamtheworld.com:3690/KRYEFM_SC
+Title1=KRYEFM_SC
+Title2=KRYEFM_SC-Bak
+Length1=-1
+NumberOfEntries=10
+Version=2

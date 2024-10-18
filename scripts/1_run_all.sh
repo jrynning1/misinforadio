@@ -6,4 +6,4 @@ then
     python 0a_fact_check_insights_embeddings_filtered.py
 else
     echo "Fact-checks previously embedded"
-fi && python 2_convert_input_to_aac.py && python 3a_transcribe_local.py && python 4_transcript_embeddings.py && python 5_embeddings_comparisons.py
+fi && python 2a_convert_input_to_mp3.py && python 3a_transcribe_local.py && python 4_transcript_embeddings.py && python 5_embeddings_comparisons.py

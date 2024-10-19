@@ -1,5 +1,7 @@
 #! /bin/bash
 
+trap 'pkill -P %PPID' EXIT
+
 station="KXJJ"
 
 URL="https://stream.radio.co/s6cf405076/listen"

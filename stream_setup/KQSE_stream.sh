@@ -1,5 +1,7 @@
 #! /bin/bash
 
+trap 'pkill -P %PPID' EXIT
+
 station="KQSE"
 
 URL="https://ais-sa1.streamon.fm/7118_48k.aac/playlist.m3u8?listenerId=esTrackblock0285212&aw_0_1st.playerid=esPlayer&aw_0_1st.skey=1729220077&us_privacy=1YN-"

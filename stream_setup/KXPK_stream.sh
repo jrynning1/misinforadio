@@ -1,5 +1,7 @@
 #! /bin/bash
 
+trap 'pkill -P %PPID' EXIT
+
 station="KXPK"
 
 URL="/home/envoy82/code/misinforadio/stream_setup/KXPKFM.pls"
